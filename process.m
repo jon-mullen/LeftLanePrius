@@ -13,21 +13,21 @@ gate_t10_l = [38.160931; -122.452567];
 gate_t10_r = [38.160903; -122.452725];
 
 % load stuff
-out_files = dir("LapsSorted/Out/*.csv");
-flying_files = dir("LapsSorted/Flying/*.csv");
-in_files = dir("LapsSorted/In/*.csv");
+out_files = dir('LapsSorted/Out/*.csv');
+flying_files = dir('LapsSorted/Flying/*.csv');
+in_files = dir('LapsSorted/In/*.csv');
 
 % rip csv files to cell array of structs
 for i = 1 : length(out_files)
-  out_laps{i} = rip_table(csvread(strcat("LapsSorted/Out/", out_files(i).name)));
+  out_laps{i} = rip_table(csvread(strcat('LapsSorted/Out/', out_files(i).name)));
 end
 
 for i = 1 : length(flying_files)
-  flying_laps{i} = rip_table(csvread(strcat("LapsSorted/Flying/", flying_files(i).name)));
+  flying_laps{i} = rip_table(csvread(strcat('LapsSorted/Flying/', flying_files(i).name)));
 end
 
 for i = 1 : length(in_files)
-  in_laps{i} = rip_table(csvread(strcat("LapsSorted/In/", in_files(i).name)));
+  in_laps{i} = rip_table(csvread(strcat('LapsSorted/In/', in_files(i).name)));
 end
 
 % clean up
@@ -66,16 +66,16 @@ for i = 1 : length(in_laps)
   end_index = length(this_lap.odo);
   
   for j = 2 : length(this_lap.odo)
-    crosses_t2 = test_crossing(gate_t2_l, gate_t2_r,
-                  [this_lap.lat(j-1); this_lap.lon(j-1)],
-                  [this_lap.lat(j); this_lap.lon(j)]);
+    crosses_t2 = test_crossing(gate_t2_l, gate_t2_r, ...
+                    [this_lap.lat(j-1); this_lap.lon(j-1)], ...
+                    [this_lap.lat(j); this_lap.lon(j)]);
     if(crosses_t2)
       % TODO: interpolate for cut
       t2_index = j;
     end
     
-    crosses_t10 = test_crossing(gate_t10_l, gate_t10_r,
-              [this_lap.lat(j-1); this_lap.lon(j-1)],
+    crosses_t10 = test_crossing(gate_t10_l, gate_t10_r, ...
+              [this_lap.lat(j-1); this_lap.lon(j-1)], ...
               [this_lap.lat(j); this_lap.lon(j)]);
 
     if(crosses_t10)
@@ -101,16 +101,16 @@ for i = 1 : length(flying_laps)
   end_index = length(this_lap.odo);
   
   for j = 2 : length(this_lap.odo)
-    crosses_t2 = test_crossing(gate_t2_l, gate_t2_r,
-                  [this_lap.lat(j-1); this_lap.lon(j-1)],
+    crosses_t2 = test_crossing(gate_t2_l, gate_t2_r, ...
+                  [this_lap.lat(j-1); this_lap.lon(j-1)], ...
                   [this_lap.lat(j); this_lap.lon(j)]);
     if(crosses_t2)
       % TODO: interpolate for cut
       t2_index = j;
     end
     
-    crosses_t10 = test_crossing(gate_t10_l, gate_t10_r,
-              [this_lap.lat(j-1); this_lap.lon(j-1)],
+    crosses_t10 = test_crossing(gate_t10_l, gate_t10_r, ...
+              [this_lap.lat(j-1); this_lap.lon(j-1)], ...
               [this_lap.lat(j); this_lap.lon(j)]);
 
     if(crosses_t10)
@@ -136,16 +136,16 @@ for i = 1 : length(flying_laps)
   end_index = length(this_lap.odo);
   
   for j = 2 : length(this_lap.odo)
-    crosses_t2 = test_crossing(gate_t2_l, gate_t2_r,
-                  [this_lap.lat(j-1); this_lap.lon(j-1)],
+    crosses_t2 = test_crossing(gate_t2_l, gate_t2_r, ...
+                  [this_lap.lat(j-1); this_lap.lon(j-1)], ...
                   [this_lap.lat(j); this_lap.lon(j)]);
     if(crosses_t2)
       % TODO: interpolate for cut
       t2_index = j;
     end
     
-    crosses_t10 = test_crossing(gate_t10_l, gate_t10_r,
-              [this_lap.lat(j-1); this_lap.lon(j-1)],
+    crosses_t10 = test_crossing(gate_t10_l, gate_t10_r, ...
+              [this_lap.lat(j-1); this_lap.lon(j-1)], ...
               [this_lap.lat(j); this_lap.lon(j)]);
 
     if(crosses_t10)
