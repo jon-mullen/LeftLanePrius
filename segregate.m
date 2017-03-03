@@ -28,7 +28,11 @@ function [retval] = segregate (lap, ind1, ind2)
   for i = 1 : length(names)
     fieldname = names{i};
     v = lap.(fieldname);
-    retval.(fieldname) = v(ind1 : ind2);
+    if(!strcmp(fieldname, 'fname'))
+      retval.(fieldname) = v(ind1 : ind2);
+    else
+      retval.(fieldname) = v;
+    end
   end
 
 end

@@ -20,14 +20,17 @@ in_files = dir('LapsSorted/In/*.csv');
 % rip csv files to cell array of structs
 for i = 1 : length(out_files)
   out_laps{i} = rip_table(csvread(strcat('LapsSorted/Out/', out_files(i).name)));
+  out_laps{i}.fname = out_files(i).name;
 end
 
 for i = 1 : length(flying_files)
   flying_laps{i} = rip_table(csvread(strcat('LapsSorted/Flying/', flying_files(i).name)));
+  flying_laps{i}.fname = flying_files(i).name;
 end
 
 for i = 1 : length(in_files)
   in_laps{i} = rip_table(csvread(strcat('LapsSorted/In/', in_files(i).name)));
+  in_laps{i}.fname = in_files(i).name;
 end
 
 % clean up
